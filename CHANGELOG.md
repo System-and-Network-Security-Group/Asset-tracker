@@ -72,7 +72,6 @@
 
 ###### Jul 23, 2021
 
-- Support MUI v5.0.0-beta.1
 - Upgrade some dependencies to the latest versions
 
 ---

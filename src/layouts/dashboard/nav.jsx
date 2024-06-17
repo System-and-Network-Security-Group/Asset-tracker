@@ -17,11 +17,12 @@ import { useResponsive } from 'src/hooks/use-responsive';
 
 import { account } from 'src/_mock/account';
 
-import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
 
 import { NAV } from './config-layout';
 import navConfig from './config-navigation';
+import Logo from '../../assets/logo-color.png';
+
 
 // ----------------------------------------------------------------------
 
@@ -81,7 +82,7 @@ export default function Nav({ openNav, onCloseNav }) {
         },
       }}
     >
-      <Logo sx={{ mt: 3, ml: 4 }} />
+      <img src={Logo} alt='logo' width={45} height={45} style={{alignSelf:"center", borderRadius:"50%", display:"flex", marginLeft:"-200px", marginTop:"5px"}}/>
 
       {renderAccount}
 
