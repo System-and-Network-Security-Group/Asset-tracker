@@ -9,6 +9,7 @@ import TableBody from '@mui/material/TableBody';
 import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
+import { Grid, Select, MenuItem, TextField,  InputLabel, FormControl } from '@mui/material';
 
 import { users } from 'src/_mock/user';
 
@@ -36,6 +37,14 @@ export default function UserPage() {
   const [filterName, setFilterName] = useState('');
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const [showForm, setShowForm] = useState(false);
+  const [assetId, setAssetId] = useState('');
+  const [assetName, setAssetName] = useState('');
+  const [categories, setCategories] = useState('');
+  const [dateTime, setDateTime] = useState('');
+  const [addedBy, setAddedBy] = useState('');
+  const [status, setStatus] = useState('');
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -94,15 +103,102 @@ export default function UserPage() {
 
   const notFound = !dataFiltered.length && !!filterName;
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission here (e.g., send data to backend)
+    console.log({ assetId, assetName, categories, dateTime, addedBy, status });
+    // Reset form fields or handle as needed
+    setAssetId('');
+    setAssetName('');
+    setCategories('');
+    setDateTime('');
+    setAddedBy('');
+    setStatus('');
+    // Hide the form after submission
+    setShowForm(false);
+  };
+
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Users</Typography>
+        <Typography variant="h4">Assets</Typography>
 
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
-          New User
+        <Button
+          variant="contained"
+          color="inherit"
+          startIcon={<Iconify icon="eva:plus-fill" />}
+          onClick={() => setShowForm(!showForm)}
+        >
+          Add New Assets
         </Button>
       </Stack>
+
+      {showForm && (
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="ID"
+                variant="outlined"
+                fullWidth
+                value={assetId}
+                onChange={(e) => setAssetId(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Name"
+                variant="outlined"
+                fullWidth
+                value={assetName}
+                onChange={(e) => setAssetName(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Categories"
+                variant="outlined"
+                fullWidth
+                value={categories}
+                onChange={(e) => setCategories(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Date & Time"
+                variant="outlined"
+                fullWidth
+                value={dateTime}
+                onChange={(e) => setDateTime(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Added By"
+                variant="outlined"
+                fullWidth
+                value={addedBy}
+                onChange={(e) => setAddedBy(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Status</InputLabel>
+                <Select value={status} onChange={(e) => setStatus(e.target.value)} label="Status">
+                  <MenuItem value="in use">In Use</MenuItem>
+                  <MenuItem value="under maintenance">Under Maintenance</MenuItem>
+                  <MenuItem value="retired">Retired</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      )}
 
       <Card>
         <UserTableToolbar
@@ -122,10 +218,11 @@ export default function UserPage() {
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
+                  { id: 'id', label: 'ID' },
                   { id: 'name', label: 'Name' },
-                  { id: 'company', label: 'Company' },
-                  { id: 'role', label: 'Role' },
-                  { id: 'isVerified', label: 'Verified', align: 'center' },
+                  { id: 'categories', label: 'Categories' },
+                  { id: 'dateandtime', label: 'Date & Time' },
+                  { id: 'addedBy', label: 'Added By', align: 'center' },
                   { id: 'status', label: 'Status' },
                   { id: '' },
                 ]}
