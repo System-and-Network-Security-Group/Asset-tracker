@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { lazy, Suspense } from 'react';
 import { Outlet, Navigate, useRoutes } from 'react-router-dom';
 
@@ -13,10 +14,21 @@ export const Page404 = lazy(() => import('src/pages/page-not-found'));
 // ----------------------------------------------------------------------
 
 export default function Router() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const logout = () => {
+    setIsLoggedIn(false);
+    routes.navigate('/login');
+  };
+
   const routes = useRoutes([
     {
+      path: 'login',
+      element: <LoginPage setIsLoggedIn={setIsLoggedIn} />,
+    },
+    {
       element: (
-        <DashboardLayout>
+        <DashboardLayout isLoggedIn={isLoggedIn} logout={logout}>
           <Suspense>
             <Outlet />
           </Suspense>
@@ -30,16 +42,12 @@ export default function Router() {
       ],
     },
     {
-      path: 'login',
-      element: <LoginPage />,
-    },
-    {
       path: '404',
       element: <Page404 />,
     },
     {
       path: '*',
-      element: <Navigate to="/404" replace />,
+      element: isLoggedIn ? <Navigate to="/" replace /> : <Navigate to="/login" replace />,
     },
   ]);
 
