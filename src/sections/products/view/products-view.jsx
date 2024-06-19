@@ -56,8 +56,6 @@ export default function ProductsView() {
           </Grid>
         ))}
       </Grid>
-
-      <ProductCartWidget />
     </Container>
   );
 }
