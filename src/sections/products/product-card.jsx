@@ -55,7 +55,6 @@ export default function ShopProductCard({ product }) {
           textDecoration: 'line-through',
         }}
       >
-        {product.priceSale && fCurrency(product.priceSale)}
       </Typography>
       &nbsp;
       {fCurrency(product.price)}
@@ -74,11 +73,6 @@ export default function ShopProductCard({ product }) {
         <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
           {product.name}
         </Link>
-
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={product.colors} />
-          {renderPrice}
-        </Stack>
       </Stack>
     </Card>
   );

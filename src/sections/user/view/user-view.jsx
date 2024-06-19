@@ -253,12 +253,14 @@ Copy code
                 onChange={(e) => setCategories(e.target.value)}
                 label="Categories"
               >
-                <MenuItem value="Hr Manager">Hr Manager</MenuItem>
-                <MenuItem value="Project Manager">Project Manager</MenuItem>
-                <MenuItem value="UX Designer">UX Designer</MenuItem>
-                <MenuItem value="Backend Developer">Backend Developer</MenuItem>
-                <MenuItem value="Full Stack Developer">Full Stack Developer</MenuItem>
-                <MenuItem value="Front End Developer">Front End Developer</MenuItem>
+                <MenuItem value="Medical Equipment">Medical Equipment</MenuItem>
+                <MenuItem value="Laboratory Equipment">Laboratory Equipment</MenuItem>
+                <MenuItem value="Pharmaceuticals">Pharmaceuticals</MenuItem>
+                <MenuItem value="Computing Devices">Computing Devices</MenuItem>
+                <MenuItem value="Medical Supplies">Medical Supplies</MenuItem>
+                <MenuItem value="Vehicles">Vehicles</MenuItem>
+                <MenuItem value="Furniture">Furniture</MenuItem>
+                <MenuItem value="Infrastructure">Infrastructure</MenuItem>
               </Select>
             </FormControl>
           </Grid>
