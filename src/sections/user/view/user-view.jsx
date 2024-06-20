@@ -195,6 +195,7 @@ export default function UserPage() {
         dateTime: selectedAsset.dateTime,
         addedBy: selectedAsset.addedBy,
         status: selectedAsset.status,
+        imageUrls: selectedAsset.imageUrls, // Include the current imageUrls in the update
       });
       toast.success('Asset updated successfully!');
       setEditPopupOpen(false);
@@ -202,6 +203,7 @@ export default function UserPage() {
       toast.error('Failed to update asset!');
     }
   };
+  
 
   const handleDeleteClick = () => {
     setEditPopupOpen(false); // Close the edit popup
@@ -267,6 +269,7 @@ export default function UserPage() {
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Assets</Typography>
 
+        
         <Button
           variant="contained"
           color="inherit"

@@ -26,9 +26,13 @@ export default function ShopProductCard({ product }) {
         height: 1,
         objectFit: 'cover',
         position: 'absolute',
+        visibility: product.imageUrls ? 'visible' : 'hidden',
       }}
     />
   );
+  
+  
+
   
 
   return (
