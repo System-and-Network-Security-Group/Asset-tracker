@@ -1,40 +1,25 @@
 import PropTypes from 'prop-types';
-
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-
-import { fCurrency } from 'src/utils/format-number';
-
-import Label from 'src/components/label';
-import { ColorPreview } from 'src/components/color-utils';
-
-// ----------------------------------------------------------------------
+import { Box, Card, Link, Stack, Typography } from '@mui/material';
 
 export default function ShopProductCard({ product }) {
   const renderStatus = (
-    <Label
-      variant="filled"
-      color={(product.status === 'sale' && 'error') || 'info'}
+    <Typography
+      variant="subtitle2"
+      color={(product.status === 'retired' && 'error') || 'info'}
       sx={{
-        zIndex: 9,
-        top: 16,
-        right: 16,
-        position: 'absolute',
         textTransform: 'uppercase',
+        fontWeight: 'bold',
       }}
     >
       {product.status}
-    </Label>
+    </Typography>
   );
 
   const renderImg = (
     <Box
       component="img"
-      alt={product.name}
-      src={product.cover}
+      alt={product.assetName}
+      src={product.imageUrls && product.imageUrls.length > 0 ? product.imageUrls[0] : ''}
       sx={{
         top: 0,
         width: 1,
@@ -44,34 +29,22 @@ export default function ShopProductCard({ product }) {
       }}
     />
   );
-
-  const renderPrice = (
-    <Typography variant="subtitle1">
-      <Typography
-        component="span"
-        variant="body1"
-        sx={{
-          color: 'text.disabled',
-          textDecoration: 'line-through',
-        }}
-      >
-      </Typography>
-      &nbsp;
-      {fCurrency(product.price)}
-    </Typography>
-  );
+  
 
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
-        {product.status && renderStatus}
-
         {renderImg}
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
-          {product.name}
+        <Typography variant="h6">{product.assetName}</Typography>
+        <Typography variant="subtitle1">Category: {product.categories}</Typography>
+        <Typography variant="body2">Added by: {product.addedBy}</Typography>
+        <Typography variant="body2">Date Time: {new Date(product.dateTime?.seconds * 1000).toLocaleString()}</Typography>
+        {renderStatus}
+        <Link href={product.imageUrls[0]} target="_blank" rel="noopener noreferrer">
+          View Image
         </Link>
       </Stack>
     </Card>
@@ -79,5 +52,14 @@ export default function ShopProductCard({ product }) {
 }
 
 ShopProductCard.propTypes = {
-  product: PropTypes.object,
+  product: PropTypes.shape({
+    addedBy: PropTypes.string,
+    assetId: PropTypes.string,
+    assetName: PropTypes.string,
+    categories: PropTypes.string,
+    dateTime: PropTypes.object,
+    imageUrls: PropTypes.arrayOf(PropTypes.string),
+    status: PropTypes.string,
+  }),
 };
+
