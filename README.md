@@ -83,12 +83,6 @@ Before you begin, ensure you have met the following requirements:
 
 ### Environment Variables
 
-Create a `.env` file in the root directory to define environment variables:
-
-```
-VITE_API_URL=http://api.example.com
-```
-
 ### Vite Configuration
 
 The Vite configuration file (`vite.config.js`) can be customized to suit your needs. Refer to the [Vite documentation](https://vitejs.dev/config/) for more details.
