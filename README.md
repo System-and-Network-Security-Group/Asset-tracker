@@ -55,11 +55,20 @@ Before you begin, ensure you have met the following requirements:
 │   ├── index.html
 │   └── ...
 ├── src
+│   ├── _mock
 │   ├── assets
 │   ├── components
+│   ├── hooks
+│   ├── layouts
+│   │   └── dashboard
 │   ├── pages
-│   ├── styles
-│   ├── App.jsx
+│   ├── routes
+│   ├── sections
+│   ├── theme
+│   ├── utils
+│   ├── app.jsx
+│   ├── createUsers.js
+│   ├── global.css
 │   ├── main.jsx
 │   └── ...
 ├── .gitignore
@@ -72,16 +81,22 @@ Before you begin, ensure you have met the following requirements:
 
 - **public/**: Static assets (e.g., HTML file, images).
 - **src/**: Source code for the application.
+  - **_mock/**: Mock data for testing.
   - **assets/**: Images, fonts, and other static resources.
   - **components/**: Reusable React components.
+  - **hooks/**: Custom React hooks.
+  - **layouts/dashboard/**: Layout components for the dashboard.
   - **pages/**: Page-level components.
-  - **styles/**: CSS and styled-components.
-  - **App.jsx**: Root component.
+  - **routes/**: Application routes.
+  - **sections/**: Page sections/components.
+  - **theme/**: Theming and styling files.
+  - **utils/**: Utility functions.
+  - **app.jsx**: Root component.
+  - **createUsers.js**: Script to create user data.
+  - **global.css**: Global CSS styles.
   - **main.jsx**: Entry point for the React application.
 
 ## Configuration
-
-### Environment Variables
 
 ### Vite Configuration
 
